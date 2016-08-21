@@ -8,34 +8,45 @@ import com.wannabe.graven.domain.Engine;
 
 import java.awt.datatransfer.StringSelection;
 
+import static com.wannabe.graven.domain.Engine.GRADLE;
+import static com.wannabe.graven.domain.Engine.MAVEN;
+
 public class RewrittenPasteTest extends LightPlatformCodeInsightFixtureTestCase {
 
 	public void testMavenToGradle() {
-		doTest(Engine.MAVEN, Engine.GRADLE);
+		doTest(MAVEN, GRADLE);
 	}
 
 	public void testMavenToGradleWithoutVersion() {
-		doTest(Engine.MAVEN, Engine.GRADLE);
+		doTest(MAVEN, GRADLE);
 	}
 
 	public void testGradleToMaven() {
-		doTest(Engine.GRADLE, Engine.MAVEN);
+		doTest(GRADLE, MAVEN);
 	}
 
 	public void testGradleToMavenWithoutVersion() {
-		doTest(Engine.GRADLE, Engine.MAVEN);
+		doTest(GRADLE, MAVEN);
 	}
 
 	public void testMavenToGradleWithoutScope() {
-		doTest(Engine.MAVEN, Engine.GRADLE);
+		doTest(MAVEN, GRADLE);
 	}
 
 	public void testMavenToGradleMultiplieDependencies() {
-		doTest(Engine.MAVEN, Engine.GRADLE);
+		doTest(MAVEN, GRADLE);
 	}
 
 	public void testGradleToMavenMultiplieDependencies() {
-		doTest(Engine.GRADLE, Engine.MAVEN);
+		doTest(GRADLE, MAVEN);
+	}
+
+	public void testGradleToMavenInvalid() {
+		doTest(GRADLE, MAVEN);
+	}
+
+	public void testMavenToGradleInvalid() {
+		doTest(MAVEN, GRADLE);
 	}
 
 	private void doTest(Engine source, Engine target) {
