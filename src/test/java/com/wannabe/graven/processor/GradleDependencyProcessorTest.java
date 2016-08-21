@@ -1,14 +1,10 @@
 package com.wannabe.graven.processor;
 
-import com.intellij.openapi.components.ServiceManager;
-import com.wannabe.graven.domain.Dependency;
 import com.wannabe.graven.domain.DependencyList;
 import com.wannabe.graven.domain.Engine;
 import org.junit.Before;
 import org.junit.Test;
 
-import static javafx.beans.binding.Bindings.isNull;
-import static javafx.beans.binding.Bindings.when;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;

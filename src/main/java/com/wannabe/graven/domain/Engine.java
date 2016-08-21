@@ -40,7 +40,7 @@ public enum Engine {
 
 	NONE(dependency -> "", "");
 
-	private final Function<Dependency, String> writer;
+	private final Function<DependencyList.Dependency, String> writer;
 	private final String fileName;
 	private static final Map<String, Engine> filenames;
 
@@ -49,7 +49,7 @@ public enum Engine {
 		stream(values()).forEach(e -> filenames.put(e.fileName, e));
 	}
 
-	Engine(Function<Dependency, String> writer, String fileName) {
+	Engine(Function<DependencyList.Dependency, String> writer, String fileName) {
 		this.writer = writer;
 		this.fileName = fileName;
 	}
@@ -59,7 +59,7 @@ public enum Engine {
 	}
 
 
-	public String toString(Dependency dependency) {
+	public String toString(DependencyList.Dependency dependency) {
 		return writer.apply(dependency);
 	}
 

@@ -1,7 +1,6 @@
 package com.wannabe.graven.services;
 
 import com.intellij.openapi.components.ServiceManager;
-import com.wannabe.graven.domain.Dependency;
 import com.wannabe.graven.domain.DependencyList;
 import com.wannabe.graven.domain.Engine;
 import com.wannabe.graven.processor.DependencyProcessor;

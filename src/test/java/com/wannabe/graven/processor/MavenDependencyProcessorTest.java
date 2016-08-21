@@ -1,6 +1,5 @@
 package com.wannabe.graven.processor;
 
-import com.wannabe.graven.domain.Dependency;
 import com.wannabe.graven.domain.DependencyList;
 import com.wannabe.graven.domain.Engine;
 import org.junit.Before;

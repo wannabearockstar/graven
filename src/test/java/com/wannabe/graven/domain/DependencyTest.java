@@ -17,7 +17,7 @@ public class DependencyTest {
 
 	@Test
 	public void toStringTestMaven() throws Exception {
-		Dependency dependency = new Dependency("group", "artifact", "version", "scope", "type", Engine.MAVEN);
+		DependencyList.Dependency dependency = new DependencyList.Dependency("group", "artifact", "version", "scope", "type", Engine.MAVEN);
 		String expected = "<dependency>\n" +
 			"\t<groupId>group</groupId>\n" +
 			"\t<artifactId>artifact</artifactId>\n" +
@@ -27,7 +27,7 @@ public class DependencyTest {
 			"</dependency>";
 		assertThat(dependency.toString(), is(expected));
 
-		Dependency dependencyWithoutSomeTags = new Dependency("group", "artifact", Engine.MAVEN);
+		DependencyList.Dependency dependencyWithoutSomeTags = new DependencyList.Dependency("group", "artifact", Engine.MAVEN);
 		expected = "<dependency>\n" +
 			"\t<groupId>group</groupId>\n" +
 			"\t<artifactId>artifact</artifactId>\n" +
@@ -38,19 +38,19 @@ public class DependencyTest {
 
 	@Test
 	public void toStringTestGradle() throws Exception {
-		Dependency dependency = new Dependency("group", "artifact", "version", "compile", "type", Engine.GRADLE);
+		DependencyList.Dependency dependency = new DependencyList.Dependency("group", "artifact", "version", "compile", "type", Engine.GRADLE);
 		String expected = "compile 'group:artifact:version'";
 		assertThat(dependency.toString(), is(expected));
 
-		Dependency dependencyWithoutSomeTags = new Dependency("group", "artifact", null, "compile", null,  Engine.GRADLE);
+		DependencyList.Dependency dependencyWithoutSomeTags = new DependencyList.Dependency("group", "artifact", null, "compile", null,  Engine.GRADLE);
 		expected = "compile 'group:artifact'";
 		assertThat(dependencyWithoutSomeTags.toString(), is(expected));
 	}
 
 	@Test
 	public void toStringTestMavenMultiplie() throws Exception {
-		Dependency dependency = new Dependency("group", "artifact", "version", "scope", "type", Engine.MAVEN);
-		Dependency dependency1 = new Dependency("group1", "artifact1", "version1", null, null, Engine.MAVEN);
+		DependencyList.Dependency dependency = new DependencyList.Dependency("group", "artifact", "version", "scope", "type", Engine.MAVEN);
+		DependencyList.Dependency dependency1 = new DependencyList.Dependency("group1", "artifact1", "version1", null, null, Engine.MAVEN);
 		DependencyList dependencyList = new DependencyList(Engine.MAVEN, Arrays.asList(dependency, dependency1));
 		String expected = "<dependency>\n" +
 			"\t<groupId>group</groupId>\n" +
@@ -70,8 +70,8 @@ public class DependencyTest {
 
 	@Test
 	public void toStringTestGradleMultiplie() throws Exception {
-		Dependency dependency = new Dependency("group", "artifact", "version", "scope", "type", Engine.GRADLE);
-		Dependency dependency1 = new Dependency("group1", "artifact1", "version1", null, null, Engine.GRADLE);
+		DependencyList.Dependency dependency = new DependencyList.Dependency("group", "artifact", "version", "scope", "type", Engine.GRADLE);
+		DependencyList.Dependency dependency1 = new DependencyList.Dependency("group1", "artifact1", "version1", null, null, Engine.GRADLE);
 		DependencyList dependencyList = new DependencyList(Engine.GRADLE, Arrays.asList(dependency, dependency1));
 		String expected = "scope 'group:artifact:version'\n" +
 			"compile 'group1:artifact1:version1'";
@@ -80,8 +80,8 @@ public class DependencyTest {
 
 	@Test
 	public void testCopy() throws Exception {
-		Dependency dependency = new Dependency("group", "artifact", "version", "compile", "type", Engine.GRADLE);
-		Dependency copy = dependency.copy(Engine.MAVEN);
+		DependencyList.Dependency dependency = new DependencyList.Dependency("group", "artifact", "version", "compile", "type", Engine.GRADLE);
+		DependencyList.Dependency copy = dependency.copy(Engine.MAVEN);
 
 		assertThat(copy.getEngine(), is(Engine.MAVEN));
 		assertThat(copy.getGroup(), is(dependency.getGroup()));
