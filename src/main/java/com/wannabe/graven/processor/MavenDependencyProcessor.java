@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -15,6 +16,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
 import java.util.List;
+import java.util.Optional;
 
 import static com.wannabe.graven.domain.DependencyList.Dependency.maven;
 import static com.wannabe.graven.domain.DependencyList.empty;
@@ -48,16 +50,19 @@ public class MavenDependencyProcessor implements DependencyProcessor {
 		String groupId = document.getElementsByTagName("groupId").item(0).getTextContent();
 		String artifactId = document.getElementsByTagName("artifactId").item(0).getTextContent();
 
-		NodeList versionTag = document.getElementsByTagName("version");
-		String version = versionTag != null && versionTag.item(0) != null ? versionTag.item(0).getTextContent() : null;
-
-		NodeList scopeTag = document.getElementsByTagName("scope");
-		String scope = scopeTag != null && scopeTag.item(0) != null ? scopeTag.item(0).getTextContent() : null;
-
-		NodeList typeTag = document.getElementsByTagName("type");
-		String type = typeTag != null && typeTag.item(0) != null ? typeTag.item(0).getTextContent() : null;
+		String version = getTextByTagName(document, "version");
+		String scope = getTextByTagName(document, "scope");
+		String type = getTextByTagName(document, "type");
 
 		return maven(groupId, artifactId, version, scope, type);
+	}
+
+	private String getTextByTagName(Element document, String tagName) {
+		NodeList versionTag = document.getElementsByTagName(tagName);
+		return Optional.ofNullable(versionTag)
+			.map(v -> v.item(0))
+			.map(Node::getTextContent)
+			.orElse(null);
 	}
 
 	private String prepare(String s) {
@@ -66,10 +71,8 @@ public class MavenDependencyProcessor implements DependencyProcessor {
 	}
 
 	private boolean isValid(Document document) {
-		return document.getElementsByTagName("groupId") != null &&
-			document.getElementsByTagName("groupId").item(0) != null &&
-			document.getElementsByTagName("artifactId") != null &&
-			document.getElementsByTagName("artifactId").item(0) != null;
+		return getTextByTagName(document.getDocumentElement(), "groupId") != null &&
+			getTextByTagName(document.getDocumentElement(), "artifactId") != null;
 	}
 
 	private static Document loadXMLFromString(String xml) throws Exception {
