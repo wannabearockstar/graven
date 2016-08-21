@@ -1,0 +1,32 @@
+<idea-plugin version="2">
+	<id>com.wannabe.graven</id>
+	<fileName>Graven</fileName>
+	<version>1.0</version>
+	<vendor email="wbasrs@gmail.com" url="http://wbars.me">wbars</vendor>
+
+	<description><![CDATA[
+      Plugin for transformation accidentally copy&paste dependencies
+    ]]></description>
+
+	<change-notes><![CDATA[
+      Support of maven and gradle
+    ]]>
+	</change-notes>
+	
+	<idea-version since-build="141.0"/>
+	<depends>com.intellij.modules.lang</depends>
+	
+
+	<extensions defaultExtensionNs="com.intellij">
+		<copyPastePreProcessor implementation="com.wannabe.graven.GravenCopyPastePreProcessor" />
+		<applicationService serviceInterface="com.wannabe.graven.services.GravenService" serviceImplementation="com.wannabe.graven.services.GravenService" />
+		<applicationService serviceInterface="com.wannabe.graven.processor.MavenDependencyProcessor" serviceImplementation="com.wannabe.graven.processor.MavenDependencyProcessor" />
+		<applicationService serviceInterface="com.wannabe.graven.processor.GradleDependencyProcessor" serviceImplementation="com.wannabe.graven.processor.GradleDependencyProcessor" />
+	</extensions>
+
+	<application-components>
+		<component>
+			<implementation-class>com.wannabe.graven.GravenComponent</implementation-class>
+		</component>
+	</application-components>
+</idea-plugin>

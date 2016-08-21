@@ -1,0 +1,17 @@
+<dependency>
+	<groupId>group</groupId>
+	<artifactId>artifact</artifactId>
+	<version>version</version>
+	<scope>compile</scope>
+</dependency>
+<dependency>
+	<groupId>group</groupId>
+	<artifactId>artifact</artifactId>
+	<version>version</version>
+	<scope>runtime</scope>
+</dependency>
+<dependency>
+	<groupId>group</groupId>
+	<artifactId>artifact</artifactId>
+	<scope>compile</scope>
+</dependency>

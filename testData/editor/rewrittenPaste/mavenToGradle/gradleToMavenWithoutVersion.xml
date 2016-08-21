@@ -1,0 +1,5 @@
+<dependency>
+	<groupId>group</groupId>
+	<artifactId>artifact</artifactId>
+	<scope>runtime</scope>
+</dependency>
