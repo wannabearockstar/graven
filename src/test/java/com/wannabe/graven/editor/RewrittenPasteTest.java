@@ -1,10 +1,14 @@
 package com.wannabe.graven.editor;
 
+import com.intellij.codeInsight.actions.ShowReformatFileDialog;
 import com.intellij.ide.ClipboardSynchronizer;
 import com.intellij.openapi.actionSystem.IdeActions;
+import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.testFramework.fixtures.CodeInsightTestFixture;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
 import com.wannabe.graven.domain.Engine;
+import com.wannabe.graven.ui.ConfirmDialog;
+import netscape.security.UserDialogHelper;
 
 import java.awt.datatransfer.StringSelection;
 

@@ -22,6 +22,7 @@
 		<applicationService serviceInterface="com.wannabe.graven.services.GravenService" serviceImplementation="com.wannabe.graven.services.GravenService" />
 		<applicationService serviceInterface="com.wannabe.graven.processor.MavenDependencyProcessor" serviceImplementation="com.wannabe.graven.processor.MavenDependencyProcessor" />
 		<applicationService serviceInterface="com.wannabe.graven.processor.GradleDependencyProcessor" serviceImplementation="com.wannabe.graven.processor.GradleDependencyProcessor" />
+		<applicationConfigurable provider="com.wannabe.graven.settings.GravenSettingsConfigurableProvider" dynamic="true" groupId="tools" />
 	</extensions>
 
 	<application-components>
