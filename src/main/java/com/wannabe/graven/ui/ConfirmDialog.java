@@ -1,32 +1,46 @@
 package com.wannabe.graven.ui;
 
+import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.ui.EditorTextField;
+import com.wannabe.graven.domain.ui.EditorData;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
-import java.awt.event.*;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import java.awt.*;
 
 public class ConfirmDialog extends DialogWrapper {
 
+	private final EditorTextField originalField;
+	private final EditorTextField rewrittenField;
 	private JPanel contentPane;
-	private JTextArea original;
-	private JTextArea rewritten;
 
-	public ConfirmDialog(@Nullable Project project, String originalText, String rewrittenText) {
+	private JPanel originalPanel;
+	private JPanel rewrittenPanel;
+
+	public ConfirmDialog(@Nullable Project project, EditorData original, EditorData rewritten) {
 		super(project);
-		original.setText(originalText);
-		original.setEditable(false);
 
-		rewritten.setText(rewrittenText);
+		originalField = addEditorField(project, original.getText(), originalPanel, original.getFileType());
+		rewrittenField = addEditorField(project, rewritten.getText(), rewrittenPanel, rewritten.getFileType());
+
 		init();
 		setTitle("Graven Rewrite");
 		setOKButtonText("Paste rewritten");
 		setCancelButtonText("Keep original");
+	}
+
+	private EditorTextField addEditorField(@Nullable Project project, String text, JPanel root, FileType fileType) {
+		EditorTextField field = new EditorTextField(text, project, fileType);
+		field.setText(text);
+		field.setEnabled(true);
+		field.setVisible(true);
+		field.setOneLineMode(false);
+		root.setLayout(new BorderLayout());
+		root.add(field);
+
+		return field;
 	}
 
 	@Nullable
@@ -38,10 +52,11 @@ public class ConfirmDialog extends DialogWrapper {
 	@Nullable
 	@Override
 	public JComponent getPreferredFocusedComponent() {
-		return rewritten;
+		return rewrittenField;
 	}
 
 	public String getRewrittenValue() {
-		return rewritten.getText();
+		return rewrittenField.getText();
 	}
+
 }

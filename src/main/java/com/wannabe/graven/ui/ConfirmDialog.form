@@ -45,19 +45,15 @@
               <text value="Original dependencies"/>
             </properties>
           </component>
-          <scrollpane id="aa3ea">
+          <grid id="505c8" binding="originalPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children>
-              <component id="ef775" class="javax.swing.JTextArea" binding="original">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
+            <children/>
+          </grid>
           <component id="38f00" class="javax.swing.JLabel">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -66,22 +62,15 @@
               <text value="Rewritten dependencies"/>
             </properties>
           </component>
-          <scrollpane id="4630d">
+          <grid id="3947d" binding="rewrittenPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children>
-              <component id="f40eb" class="javax.swing.JTextArea" binding="rewritten">
-                <constraints/>
-                <properties>
-                  <autoscrolls value="true"/>
-                  <selectionStart value="0"/>
-                </properties>
-              </component>
-            </children>
-          </scrollpane>
+            <children/>
+          </grid>
         </children>
       </grid>
     </children>

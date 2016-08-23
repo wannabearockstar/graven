@@ -15,7 +15,7 @@ public class GravenSettingsUI implements Configurable {
 
 	private JCheckBox showConfirmDialogBeforeCheckBox;
 	private JPanel myPanel;
-	private static volatile AtomicBoolean isConfirmFormShow = new AtomicBoolean(false);
+	private static volatile AtomicBoolean isConfirmFormShow = new AtomicBoolean(true);
 
 	@Nls
 	@Override

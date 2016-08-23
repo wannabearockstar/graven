@@ -1,6 +1,7 @@
 package com.wannabe.graven.services;
 
 import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.util.Pair;
 import com.wannabe.graven.domain.DependencyList;
 import com.wannabe.graven.domain.Engine;
 import com.wannabe.graven.processor.DependencyProcessor;
@@ -10,8 +11,10 @@ import com.wannabe.graven.processor.MavenDependencyProcessor;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.intellij.openapi.util.Pair.*;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.reducing;
 
 public class GravenService {
 
@@ -26,16 +29,16 @@ public class GravenService {
 		return ServiceManager.getService(GravenService.class);
 	}
 
-	public String tryToRewrite(String text, String filename) {
+	public Pair<DependencyList, DependencyList> tryToRewrite(String text, String filename) {
 		boolean validFilename = stream(Engine.values()).anyMatch(e -> e.getFileName().equals(filename));
 		if (!validFilename) {
-			return text;
+			return empty();
 		}
 		DependencyList dependency = lookupDependency(text);
 		if (dependency == null || dependency.getEngine().equals(Engine.ofFilename(filename))) {
-			return text;
+			return empty();
 		}
-		return dependency.copy(Engine.ofFilename(filename)).toString();
+		return create(dependency, dependency.copy(Engine.ofFilename(filename)));
 	}
 
 	private DependencyList lookupDependency(String text) {
