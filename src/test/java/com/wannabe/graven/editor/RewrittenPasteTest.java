@@ -1,14 +1,14 @@
 package com.wannabe.graven.editor;
 
-import com.intellij.codeInsight.actions.ShowReformatFileDialog;
 import com.intellij.ide.ClipboardSynchronizer;
+import com.intellij.ide.plugins.PluginManager;
+import com.intellij.ide.plugins.cl.PluginClassLoader;
 import com.intellij.openapi.actionSystem.IdeActions;
-import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.testFramework.fixtures.CodeInsightTestFixture;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
+import com.intellij.util.ui.DialogUtil;
 import com.wannabe.graven.domain.Engine;
-import com.wannabe.graven.ui.ConfirmDialog;
-import netscape.security.UserDialogHelper;
+import com.wannabe.graven.ui.GravenSettingsUI;
 
 import java.awt.datatransfer.StringSelection;
 
@@ -16,6 +16,13 @@ import static com.wannabe.graven.domain.Engine.GRADLE;
 import static com.wannabe.graven.domain.Engine.MAVEN;
 
 public class RewrittenPasteTest extends LightPlatformCodeInsightFixtureTestCase {
+
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+
+		GravenSettingsUI.setIsConfirmFormShow(false);
+	}
 
 	public void testMavenToGradle() {
 		doTest(MAVEN, GRADLE);

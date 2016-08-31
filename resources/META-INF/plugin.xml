@@ -1,6 +1,6 @@
 <idea-plugin version="2">
 	<id>com.wannabe.graven</id>
-	<fileName>Graven</fileName>
+	<name>Graven</name>
 	<version>1.0</version>
 	<vendor email="wbasrs@gmail.com" url="http://wbars.me">wbars</vendor>
 

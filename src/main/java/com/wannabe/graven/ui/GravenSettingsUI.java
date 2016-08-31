@@ -59,4 +59,8 @@ public class GravenSettingsUI implements Configurable {
 	public static boolean isConfirmDialogShow() {
 		return isConfirmFormShow.get();
 	}
+
+	public static void setIsConfirmFormShow(boolean isEnabled) {
+		isConfirmFormShow.set(isEnabled);
+	}
 }
